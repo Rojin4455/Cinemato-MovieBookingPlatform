@@ -106,3 +106,14 @@ class OTP(models.Model):
         return f"OTP for {self.email,self.phone}"
 
 
+
+
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(
+        User, on_delete=models.CASCADE, related_name="user_profile")
+    profile_pic = models.ImageField(
+        upload_to='user/profile_pic/', null=True, blank=True)
+
+    def __str__(self):
+        return str(self.user.first_name)
